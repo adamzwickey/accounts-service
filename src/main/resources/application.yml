@@ -2,11 +2,11 @@ tetrate:
   oidc:
     url: https://keycloak.cloud.zwickey.net
     clientId: tetrate-trader
-
 spring:
   profiles.active: local,localpostgres
   application:
      name: accounts-service
+  jpa.hibernate.ddl-auto: create
   main:
       allow-bean-definition-overriding: true
   config:

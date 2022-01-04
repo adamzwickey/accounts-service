@@ -1,4 +1,4 @@
-package io.tetrate.web.config;
+package io.tetrate.accounts.config;
 
 import java.util.HashMap;
 import java.util.HashSet;

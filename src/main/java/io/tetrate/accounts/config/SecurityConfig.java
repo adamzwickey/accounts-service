@@ -30,7 +30,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .mvcMatchers(HttpMethod.GET, "/actuator/health").permitAll()
                 .mvcMatchers(HttpMethod.POST, "/register").permitAll()
-                .anyRequest().hasAuthority("ROLE_ACCOUNT")
+                .anyRequest().fullyAuthenticated()
+                //.and().authorizeRequests().anyRequest().hasAuthority("ROLE_ACCOUNT")
                 .and().oauth2ResourceServer()
                 .jwt().jwtAuthenticationConverter(grantedAuthoritiesConverter).decoder(jwtDecoder());
     }

@@ -22,6 +22,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
@@ -96,13 +97,9 @@ public class AccountController {
 	 */
 	@PostMapping(value = "/accounts")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Boolean save(@RequestBody Account accountRequest,
-							UriComponentsBuilder builder, @AuthenticationPrincipal JwtAuthenticationToken token) {
-		if (token != null) {
-			accountRequest.setUserid(token.getName());
-		} else {
-			accountRequest.setUserid("hello");
-		}
+	public Boolean save(@Valid @RequestBody Account accountRequest, UriComponentsBuilder builder) {
+		LOG.debug("Account Request: {}" + accountRequest);
+		
 		LOG.debug("AccountController.save: userId="	+ accountRequest.getUserid());
 		Integer accountProfileId = this.service.saveAccount(accountRequest);
 		HttpHeaders responseHeaders = new HttpHeaders();

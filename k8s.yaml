@@ -42,7 +42,7 @@ spec:
         version: v1
     spec:
       containers:
-        - image: gcr.io/abz-perm/accounts:v1
+        - image: gcr.io/abz-perm/accounts:v2
           name: accounts-service
           imagePullPolicy: Always
           ports:
